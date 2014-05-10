@@ -11,7 +11,7 @@ module.exports = function (grunt) {
 			},
 			src: {
 				files: [
-					// 'scripts/common.js',
+					'_scripts/common.js',
 					// 'scripts/head-common.js',
 					// 'scripts/vendor/*.js',
 					'_css/scss/*.scss'
@@ -35,7 +35,42 @@ module.exports = function (grunt) {
 					'_css/style.min.css': ['_css/style.css']
 				}
 			}
-		}
+		},
+		concat: {
+			options: {
+				stripBanners: true,
+				banner: '<%= banner %>'
+			},
+			all: {
+				src: [
+					'_scripts/vendor/idangerous.swiper.min.js',
+					'_scripts/common.js'
+				],
+				dest: '_scripts/all.js'
+			}
+		},
+		jshint: {
+			all: ['Gruntfile.js', '_scripts/common.js'],
+			options: {
+				lastsemic: true,
+				strict: false,
+				unused: true,
+				globals: {
+					jQuery: true
+				}
+			}
+		},
+		uglify: {
+			options: {
+				banner: '<%= banner %>',
+				warnings: false
+			},
+			build: {
+				files: {
+					'_scripts/all.min.js': ['_scripts/all.js']
+				}
+			}
+		},
 	});
 
 	// Load plugins
@@ -47,6 +82,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Tasks
-	grunt.registerTask('default', ['sass', 'cssmin']);
+	grunt.registerTask('default', ['sass', 'cssmin', 'jshint', 'concat', 'uglify']);
 
 };

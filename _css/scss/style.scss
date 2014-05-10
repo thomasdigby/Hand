@@ -6,10 +6,11 @@
 */
 
 /* mixins for sass and css reset */
-@import "reset";
 @import "sass";
+@import "reset";
 
 /* base styles */
+@import "swiper";
 @import "base";
 
 /* OOCSS and utilities */
