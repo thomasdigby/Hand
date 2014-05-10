@@ -1,0 +1,14 @@
+
+/* ---------------------------------------- Mixins ---------------------------------------- */
+
+
+/* ------------------------------ Transition */
+@mixin transition($vars) {
+	-webkit-backface-visibility: hidden;
+	   -moz-backface-visibility: hidden;
+			backface-visibility: hidden;
+	-webkit-transition: $vars;
+	   -moz-transition: $vars;
+		 -o-transition: $vars;
+			transition: $vars;
+}
