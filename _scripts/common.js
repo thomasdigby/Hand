@@ -37,6 +37,9 @@ var Events = {
 		if($(PageExhibition.selector).length) {
 			PageExhibition.scrollEvent();
 		}
+		if ($('[data-position-update]').length) {
+			PositionUpdate.scrollEvent();
+		}
 	},
 
 	unbindScrollEvent: function () {
@@ -111,45 +114,59 @@ var Links = {
 var Carousel = {
 
 	selector: '[data-swiper]',
-	direction: '[data-swiper-direction]',
+	slide: '.swiper-slide',
 	pagination: '[data-swiper-pagination]',
 
 	init: function() {
 		this.build();
-		this.bindDirectionButtons();
+		this.bindImageClick();
 	},
 
 	build: function() {
 
 		$(this.selector).swiper({
-			grabCursor: true,
+			grabCursor: false,
 			keyboardControl: true,
 			loop: true,
 			mode:'horizontal',
 			pagination: Carousel.pagination,
 			paginationClickable: true,
 			paginationElement: 'li',
+			simulateTouch: false,
 			speed: 500
 		});
 	},
 
-	bindDirectionButtons: function() {
+	bindImageClick: function() {
+		$(this.slide).on('click', function () {
 
-		$(this.direction).on('click', function () {
+			console.log('click');
 
-			var $this = $(this),
-				carousel = $(Carousel.selector).data('swiper'),
-				direction = $this.data('swiper-direction');
+			var carousel = $(Carousel.selector).data('swiper');
 
-			// go to next slide else go to prev slide
-			if (direction == 'next') {
-				carousel.swipeNext();
-			} else if (direction == 'prev') {
-				carousel.swipePrev();
-			}
+			// go to next slide
+			carousel.swipeNext();
 
 		});
 	}
+
+	// bindDirectionButtons: function() {
+
+	// 	$(this.direction).on('click', function () {
+
+	// 		var $this = $(this),
+	// 			carousel = $(Carousel.selector).data('swiper'),
+	// 			direction = $this.data('swiper-direction');
+
+	// 		// go to next slide else go to prev slide
+	// 		if (direction == 'next') {
+	// 			carousel.swipeNext();
+	// 		} else if (direction == 'prev') {
+	// 			carousel.swipePrev();
+	// 		}
+
+	// 	});
+	// }
 
 };
 
@@ -158,7 +175,7 @@ var Expander = {
 	selector: '[data-expander]',
 	buttonSelector: '[data-expander-button]',
 	contentSelector: '[data-expander-content]',
-	duration: 250,
+	duration: 350,
 
 	init: function () {
 		if ($(this.selector).length) {
@@ -198,9 +215,9 @@ var Expander = {
 			var $this = $(this),
 				$thisExpander = $this.parents(Expander.selector),
 				$thisContent = $(Expander.contentSelector, $thisExpander),
-				// textClosed = $this.data('content-closed'),
-				// textOpen = $this.data('content-open'),
-				state = $this.attr('aria-expanded') === 'false' ? true : false;
+				state = $this.attr('aria-expanded') === 'true' ? false : true;
+
+			// $(Expander.contentSelector).slideUp(Expander.duration);
 
 			// set btn state
 			$this.attr('aria-expanded', state);
@@ -212,12 +229,79 @@ var Expander = {
 			$thisContent.slideToggle(Expander.duration, function () {
 				$thisContent.attr('aria-hidden', !state);
 				$this.attr('disabled', false);
-			});
-
-			// set focus and swap text content
-
+			}, AppSettings.Easing);
 
 		});
+	}
+
+};
+
+// var PanelInfo = {
+
+// 	init: function() {
+// 		if($('[data-panel-expander]').length) {
+
+// 		}
+// 	},
+
+// 	toggleButtonPosition: function() {
+// 		$('[data-panel-expander]').find('data-expander-button').addClass();
+// 	}
+
+// };
+
+var ImagePreview = {
+
+	link: '[data-exhibition]',
+
+	init: function() {
+		this.assignColors();
+		this.bindHoverEvent();
+	},
+
+	assignColors: function() {
+		$(this.link).each(function() {
+			var $this = $(this),
+				exhibitionId = $this.data('exhibition'),
+				classColor = $this.attr('class'),
+				$exhibitionText = $('[data-exhibition-placeholder="'+exhibitionId+'"] p');
+			$exhibitionText.addClass(classColor);
+		});
+	},
+
+	bindHoverEvent: function() {
+
+		$(this.link).on({
+			'mouseover': function() {
+
+				var $this = $(this),
+					exhibitionId = $this.data('exhibition'),
+					$exhibitionImage = $('[data-exhibition-placeholder="'+exhibitionId+'"]');
+
+				$exhibitionImage.show();
+			},
+			'mouseout': function() {
+				$('[data-exhibition-placeholder]').hide();
+			}
+		});
+
+	}
+
+};
+
+var PositionUpdate = {
+
+	scrollEvent: function() {
+
+		var $elem = $('[data-position-update]'),
+			position = AppSettings.scrollPos < AppSettings.winHeight ? 'absolute' : 'fixed';
+		if (AppSettings.scrollPos >= AppSettings.winHeight) {
+			$elem.addClass('is_inview');
+		} else {
+			$elem.removeClass('is_inview');
+		}
+		$elem.css('position', position);
+
 	}
 
 };
@@ -237,13 +321,27 @@ var PageExhibition = {
 	init: function() {
 		if($(this.selector).length) {
 			this.bindHoverEvent();
+			this.countWork();
 		}
+	},
+
+	countWork: function() {
+		var workTotal = $(this.item).length;
+		$('[data-work-total]').text(workTotal);
+	},
+
+	updateInformation: function(i, name) {
+		$('[data-work-name]').text(name);
+		$('[data-work-active]').text(i + 1);
 	},
 
 	bindHoverEvent: function() {
 		$(this.item).on({
 			'mouseover': function() {
-				var $this = $(this);
+				var $this = $(this),
+					index = $this.parent().index(),
+					name = $this.data('name');
+				PageExhibition.updateInformation(index, name);
 				$this.parents(PageExhibition.selector).addClass(PageExhibition.classActive);
 			},
 			'mouseleave': function() {
@@ -274,6 +372,35 @@ var PageExhibition = {
 
 };
 
+var UploadForm = {
+
+	init: function() {
+		// if ($().length) {
+
+		// }
+		this.bindClickEvent();
+	},
+
+	bindClickEvent: function() {
+
+		$('[data-trigger-step]').on('click', function() {
+
+			var $this = $(this),
+				nextStep = $this.data('trigger-step');
+
+			UploadForm.openStep(nextStep);
+		});
+
+	},
+
+	openStep: function(step) {
+		$('[data-upload-step]').fadeOut(250, function() {
+			$('[data-upload-step="'+step+'"]').fadeIn(250);
+		});
+	}
+
+};
+
 
 
 
@@ -288,6 +415,8 @@ var Main = {
 		// Components
 		Carousel.init();
 		Expander.init();
+		ImagePreview.init();
+		UploadForm.init();
 
 		// Pages
 		PageExhibition.init();

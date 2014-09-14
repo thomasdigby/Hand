@@ -1,8 +1,16 @@
 
-/* ---------------------------------------- Mixins ---------------------------------------- */
+/* ---------------------------------------- SASS ---------------------------------------- */
 
 
-/* ------------------------------ Transition */
+/* ------------------------------ Variables */
+
+$avenirBook: 'AvenirBook', Helvetica, Arial, sans-serif;
+$avenirMedium: 'AvenirMedium', Helvetica, Arial, sans-serif;
+$avenirHeavy: 'AvenirHeavy', Helvetica, Arial, sans-serif;
+
+/* ------------------------------ Mixins */
+
+// transitions
 @mixin transition($vars) {
 	-webkit-backface-visibility: hidden;
 	   -moz-backface-visibility: hidden;
@@ -11,4 +19,9 @@
 	   -moz-transition: $vars;
 		 -o-transition: $vars;
 			transition: $vars;
+}
+@mixin background-size($var) {
+	-webkit-background-size: $var;
+	   -moz-background-size: $var;
+			background-size: $var;
 }

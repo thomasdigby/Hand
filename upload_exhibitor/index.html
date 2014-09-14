@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+
+	<title>Hand</title>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=1024, initial-scale=1.0, maximum-scale=1.0">
+
+	<link rel="stylesheet" href="../_css/style.css">
+
+</head>
+<body>
+
+	<div class="wrapper">
+
+		<header class="border_b">
+			<nav>
+				<ul class="list_reset list_inline">
+					<li><a href="../exhibitions/">Exhibitions</a></li>
+					<li><a href="../archive/">Archive</a></li>
+					<li><a href="../resources/">Resources</a></li>
+					<li><a href="../information/">Information</a></li>
+					<li class="right"><a href="../upload/" class="is_current">Upload</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<section class="container_page">
+
+			<form action="index.php" method="post" class="text_c" enctype="multipart/form-data"/>
+				<h2>Add an exhibitor</h2>
+
+				<label for="name">Name:</label>
+				<input type="text" name="name" id="name" required placeholder="e.g. Oliver Long" />
+
+				<label for="exhibition">Exhibition:</label>
+				<input type="text" name="exhibition" id="exhibition" required placeholder="e.g. Graphic Design, Kingston University" />
+
+				<label for="fileAttach">Images:</label>
+				<input type="file" id="fileAttach" required name="fileAttach" value="Upload images" />
+				<p class="note">A .zip file with max 3 images sized 750px by 500px</p>
+
+				<label for="website">Website:</label>
+				<input type="url" id="website" name="website" placeholder="e.g. oliverlong.com" />
+
+				<label for="email">Email:</label>
+				<input type="email" name="email" id="email" required placeholder="e.g. hello@oliverlong.com" />
+
+				<label for="caption">Caption:</label>
+				<textarea id="caption" required name="caption" placeholder="50 words maximum"></textarea>
+				<div class="space"></div>
+				<button type="submit" name="submit">Submit</button>
+
+			</form>
+
+		</section>
+
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../_scripts/vendor/jquery-2.0.0.min.js"><\/script>')</script>
+	<script src="../_scripts/all.js"></script>
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-49301793-1', 'hand.gallery');
+	  ga('send', 'pageview');
+
+	</script>
+
+</body>
+</html>

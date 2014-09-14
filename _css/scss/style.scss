@@ -8,6 +8,7 @@
 /* mixins for sass and css reset */
 @import "sass";
 @import "reset";
+@import "fonts";
 
 /* base styles */
 @import "swiper";
@@ -15,4 +16,4 @@
 
 /* OOCSS and utilities */
 // @import "oocss";
-// @import "utility";
+@import "utilities";

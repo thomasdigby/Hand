@@ -1,0 +1,157 @@
+/* -------------------- Margin */
+.margin_0 {
+  margin: 0 !important; }
+
+.margin_t_0 {
+  margin-top: 0 !important; }
+
+.margin_r_0 {
+  margin-right: 0 !important; }
+
+.margin_b_0 {
+  margin-bottom: 0 !important; }
+
+.margin_l_0 {
+  margin-left: 0 !important; }
+
+/* custom */
+.margin_b_10 {
+  margin-bottom: 10px !important; }
+
+/* -------------------- Padding */
+.padding_0 {
+  padding: 0 !important; }
+
+.padding_t_0 {
+  padding-top: 0 !important; }
+
+.padding_r_0 {
+  padding-right: 0 !important; }
+
+.padding_b_0 {
+  padding-bottom: 0 !important; }
+
+.padding_l_0 {
+  padding-left: 0 !important; }
+
+/* custom */
+.padding_l_20 {
+  padding-left: 20px !important; }
+
+/* -------------------- Border */
+.border_0 {
+  border: 0 !important; }
+
+.border_t_0 {
+  border-top: 0 !important; }
+
+.border_r_0 {
+  border-right: 0 !important; }
+
+.border_b_0 {
+  border-bottom: 0 !important; }
+
+.border_l_0 {
+  border-left: 0 !important; }
+
+/* -------------------- Floats */
+.left {
+  float: left !important; }
+
+.right {
+  float: right !important; }
+
+/* -------------------- Text alignment */
+.text_l {
+  text-align: left; }
+
+.text_r {
+  text-align: right; }
+
+.text_c {
+  text-align: center; }
+
+/* -------------------- Text case */
+.upper {
+  text-transform: uppercase; }
+
+.lower {
+  text-transform: lowercase; }
+
+/* -------------------- Text layout */
+.break_all {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto; }
+
+/* -------------------- Typography */
+.strong,
+strong {
+  font-weight: 700 !important; }
+
+.normal {
+  font-weight: normal !important; }
+
+.italic {
+  font-style: italic !important; }
+
+/* -------------------- Clear */
+.clear {
+  clear: both;
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden; }
+
+.space {
+  clear: both;
+  font-size: 0;
+  height: 30px;
+  line-height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden; }
+
+.space.large {
+  height: 40px; }
+
+/* -------------------- Misc */
+.block {
+  display: block; }
+
+.overflow {
+  overflow: hidden; }
+
+.relative {
+  position: relative !important; }
+
+/* hide only visually, but have it available for screenreaders */
+.hidden, table caption {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+
+/* hide from both screenreaders and browsers */
+.no_display {
+  display: none !important;
+  visibility: hidden; }
+
+.text_hidden {
+  text-indent: 200%;
+  white-space: nowrap;
+  overflow: hidden; }
+
+/* hide for no_js users */
+.no_js .no_js_hide {
+  display: none; }

@@ -71,6 +71,17 @@ module.exports = function (grunt) {
 				}
 			}
 		},
+		svgmin: {
+			dist: {
+				files: [{
+					expand: true,
+					cwd: '_svg',
+					src: ['**/*.svg'],
+					dest: '_svgmin',
+					ext: '.min.svg'
+				}]
+			}
+		}
 	});
 
 	// Load plugins
@@ -80,8 +91,10 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-svgmin');
 
 	// Tasks
 	grunt.registerTask('default', ['sass', 'cssmin', 'jshint', 'concat', 'uglify']);
+	grunt.registerTask('svg', ['svgmin']);
 
 };
