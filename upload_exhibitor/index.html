@@ -13,8 +13,6 @@
 </head>
 <body>
 
-	<div class="wrapper">
-
 		<header class="border_b">
 			<nav>
 				<ul class="list_reset list_inline">
@@ -27,10 +25,12 @@
 			</nav>
 		</header>
 
+	<div class="wrapper">
+
 		<section class="container_page">
 
 			<form action="index.php" method="post" class="text_c" enctype="multipart/form-data"/>
-				<h2>Add an exhibitor</h2>
+				<h2>Join an exhibition</h2>
 
 				<label for="name">Name:</label>
 				<input type="text" name="name" id="name" required placeholder="e.g. Oliver Long" />
@@ -40,7 +40,7 @@
 
 				<label for="fileAttach">Images:</label>
 				<input type="file" id="fileAttach" required name="fileAttach" value="Upload images" />
-				<p class="note">A .zip file with max 3 images sized 750px by 500px</p>
+				<p class="note">A .zip file with up to 5 Hi-res jpegs</p>
 
 				<label for="website">Website:</label>
 				<input type="url" id="website" name="website" placeholder="e.g. oliverlong.com" />
@@ -48,9 +48,11 @@
 				<label for="email">Email:</label>
 				<input type="email" name="email" id="email" required placeholder="e.g. hello@oliverlong.com" />
 
+				<label for="title">Project Title:</label>
+				<input type="text" name="title" id="title" required placeholder="e.g. Inside Out" />
+
 				<label for="caption">Caption:</label>
-				<textarea id="caption" required name="caption" placeholder="50 words maximum"></textarea>
-				<div class="space"></div>
+				<textarea id="caption" required name="caption" placeholder="75 words maximum"></textarea>
 				<button type="submit" name="submit">Submit</button>
 
 			</form>

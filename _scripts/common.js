@@ -123,18 +123,21 @@ var Carousel = {
 	},
 
 	build: function() {
+		console.log();
+		if ($(this.selector).find(this.slide).length > 1) {
 
-		$(this.selector).swiper({
-			grabCursor: false,
-			keyboardControl: true,
-			loop: true,
-			mode:'horizontal',
-			pagination: Carousel.pagination,
-			paginationClickable: true,
-			paginationElement: 'li',
-			simulateTouch: false,
-			speed: 500
-		});
+			$(this.selector).swiper({
+				grabCursor: false,
+				keyboardControl: true,
+				loop: true,
+				mode:'horizontal',
+				pagination: Carousel.pagination,
+				paginationClickable: true,
+				paginationElement: 'li',
+				simulateTouch: false,
+				speed: 500
+			});
+		}
 	},
 
 	bindImageClick: function() {
@@ -291,6 +294,10 @@ var ImagePreview = {
 
 var PositionUpdate = {
 
+	loadEvent: function() {
+		$('[data-position-update]').addClass('is_visible');
+	},
+
 	scrollEvent: function() {
 
 		var $elem = $('[data-position-update]'),
@@ -411,11 +418,15 @@ var Main = {
 		// Utils/Events
 		Events.bindEvents();
 		Links.init();
+	},
+
+	load: function() {
 
 		// Components
 		Carousel.init();
 		Expander.init();
 		ImagePreview.init();
+		PositionUpdate.loadEvent();
 		UploadForm.init();
 
 		// Pages
@@ -425,3 +436,4 @@ var Main = {
 };
 
 $(document).ready(Main.run());
+$(window).on('load', Main.load());
